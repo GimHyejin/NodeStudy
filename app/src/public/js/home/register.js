@@ -9,7 +9,7 @@ function register() {
         pswordCheck = document.querySelector("#pwCheck");
     
     if(!id.value) return alert("아이디를 입력해주십시오")
-    if(psword !== pswordCheck) return alert("비밀번호가 일치하지 않습니다.")
+    if(psword.value !== pswordCheck.value) return alert("비밀번호가 일치하지 않습니다.")
     
     const req = {
         id: id.value,
