@@ -10,6 +10,8 @@ function login() {
     const id = document.querySelector('#id'),
         psword = document.querySelector("#pw");
 
+    if(!id.value) return alert("아이디를 입력해주십시오")
+    if(!psword.value) return alert("비밀번호를 입력해주십시오")
     const req = {
         id: id.value,
         psword: psword.value
@@ -29,7 +31,8 @@ function login() {
         if(res.success){
             location.href='/'
         }else{
-            alert(res.msg)
+            if(res.err) return alert(res.err)
+            else alert(res.msg)
              
         }
     })
