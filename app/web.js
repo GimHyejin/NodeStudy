@@ -12,8 +12,6 @@ dotenv.config();
 
 //const accessLogStream = require('./src/config/log')
 
-
-
 //웹 세팅  Express.js 애플리케이션이 뷰 파일(HTML, EJS 등)을 찾을 디렉토리를 지정하는 것입니다
 app.set('views','./src/views')
 app.set('view engine','ejs')

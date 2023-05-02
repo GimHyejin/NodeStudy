@@ -22,22 +22,36 @@ const resultData = {
     login: async (req, res) => {
         const userData = new User(req.body);
         const response = await userData.login();
-        if(response.err) 
-            logger.error(`Post/login 200 Response :Success ${response.success} ${response.error}`)
-        else 
-            logger.info(`Post/login 200 Response :Success ${response.success} Msg:${response.msg}`)
-        return res.json(response)
+        const url ={
+            method: "POST",
+            path:"/login",
+            status: response.err ? 409 : 201,
+        }
+        log(response,url)
+        return res.status(url.status).json(response)
     },
     register: async (req, res) => {
         const userData = new User(req.body);
         const response = await userData.register();
-        if(response.err) 
-            logger.error(`Post/login 200 Response :Success ${response.success} ${response.error}`)
-        else 
-            logger.info(`Post/login 200 Response :Success ${response.success} Msg:${response.msg}`)
-    
-        return res.json(response)
+        const url ={
+            method: "POST",
+            path:"/register",
+            status: response.err ? 409 : 201,
+        }
+        log(response,url)
+        return res.status(url.status).json(response)
     }
+}
+function log(response,url){
+    if(response.err)
+        logger.error(
+            `${url.method}/${url.path} ${url.status} Response :Success ${response.success} ${response.error}`
+        )
+    else 
+        logger.info(
+            `${url.method}/${url.path} ${url.status} Response :Success ${response.success} Msg:${response.msg || ""} `
+        )
+       
 }
 module.exports = {
     output,
